@@ -20,7 +20,9 @@
     "uniq": "^1.0.1"
   },
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/reergymerej/reergymerej.git"

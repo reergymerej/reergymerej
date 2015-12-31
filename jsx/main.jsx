@@ -1,6 +1,5 @@
-const React = require('react');
-// import React from 'react';
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 console.log('foo');
 console.log('foo');

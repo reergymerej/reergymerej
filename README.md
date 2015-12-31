@@ -3,4 +3,4 @@
 * npm install
 
 from /jsx
-    `watchify -d -t [ babelify --presets [ react ] ] main.jsx -o ../public/js/main.js`
+    `watchify -d -t -v [ babelify ] main.jsx -o ../public/js/main.js`
