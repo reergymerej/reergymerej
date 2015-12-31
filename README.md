@@ -1,5 +1,6 @@
 #reerGymereJ
 
 * npm install
-* npm install -g browserify
-* bundle client js (public/js/src) `browserify ./main.js ../bin/main.js`
+
+from /jsx
+    `watchify -d -t [ babelify --presets [ react ] ] main.jsx -o ../public/js/main.js`
