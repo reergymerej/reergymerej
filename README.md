@@ -9,3 +9,10 @@ DEBUG=reergymerej:* npm start
 
 from /jsx
     `watchify -d -t -v [ babelify ] main.jsx -o ../public/js/main.js`
+
+
+## TODO
+
+* Get Jest going.
+* live reload
+* make it easier to start up development (npm script or something)
