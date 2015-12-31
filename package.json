@@ -13,5 +13,17 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reergymerej/reergymerej.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reergymerej/reergymerej/issues"
+  },
+  "homepage": "https://github.com/reergymerej/reergymerej"
 }
