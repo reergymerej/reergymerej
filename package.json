@@ -30,5 +30,10 @@
   "bugs": {
     "url": "https://github.com/reergymerej/reergymerej/issues"
   },
-  "homepage": "https://github.com/reergymerej/reergymerej"
+  "homepage": "https://github.com/reergymerej/reergymerej",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
 }
