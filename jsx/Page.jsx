@@ -1,4 +1,5 @@
 import React from 'react';
+import Navigation from './Navigation.jsx';
 
 export default class Header extends React.Component {
     constructor(...args) {
@@ -10,12 +11,15 @@ export default class Header extends React.Component {
     render() {
         return (
             <div id="page">
-                <p>Hello.</p>
-                <p>I've decided to rewrite <a href="http://jeremygreer.herokuapp.com/#/">my site</a> using some new tools.</p>
-                <ul>
-                    <li>auth</li>
-                    <li>simple blog</li>
-                </ul>
+                <Navigation />
+                <div>
+                    <p>Hello.</p>
+                    <p>I've decided to rewrite <a href="http://jeremygreer.herokuapp.com/#/">my site</a> using some new tools.</p>
+                    <ul>
+                        <li>auth</li>
+                        <li>simple blog</li>
+                    </ul>
+                </div>
             </div>
         );
     }

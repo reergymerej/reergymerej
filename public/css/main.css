@@ -17,9 +17,19 @@ a:active {
   margin: 0;
   text-align: right;
 }
+#navigation {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#navigation li {
+  padding: 1em;
+}
 #page {
   padding: 1em 5em;
   line-height: 2em;
+  display: flex;
 }
 #footer {
   background-color: #440077;
