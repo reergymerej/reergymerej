@@ -1,7 +1,21 @@
 @import 'header';
-@import 'main';
+@import 'page';
+@import 'footer';
 
 #layout {
   display: flex;
   flex-direction: column;
+  height: inherit;
+
+  #header {
+    flex: 0 0 auto;
+  }
+
+  #page {
+    flex: 1 0 auto;
+  }
+
+  #footer {
+    flex: 0 0 auto;
+  }
 }

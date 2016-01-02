@@ -11,4 +11,3 @@ gulp watch
 ## TODO
 
 * Get Jest going.
-* live reload

@@ -1,11 +1,20 @@
+@import 'theme';
 @import 'layout';
 
-@bg: #00BCD4;
+html {
+  height: 100%;
+}
 
 body {
-    background-color: @bg;
+    background-color: @bg-dark;
     color: white;
     font-family: sans-serif;
-    padding: 0.5em;
-    margin: 0em;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    letter-spacing: 0.1em;
+
+    #content {
+      height: 100%;
+    }
 }
