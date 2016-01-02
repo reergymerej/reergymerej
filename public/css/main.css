@@ -1,8 +1,14 @@
 #header {
-  background-color: red;
-  border-bottom: 5px dotted green;
+  margin: 0;
+}
+#layout {
+  display: flex;
+  flex-direction: column;
 }
 body {
-  background-color: purple;
+  background-color: #00BCD4;
   color: white;
+  font-family: sans-serif;
+  padding: 0.5em;
+  margin: 0em;
 }
