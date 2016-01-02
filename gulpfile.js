@@ -55,7 +55,8 @@ gulp.task('css', function(){
     return gulp.src(cssMainFile)
         .pipe(less())
         .pipe(gulpif(argv.production, minifyCSS({keepBreaks:true})))
-        .pipe(gulp.dest(path.join(staticDirectory, 'css')));
+        .pipe(gulp.dest(path.join(staticDirectory, 'css')))
+        .pipe(livereload());
 });
 
 // Watch JS + CSS using watchify + gulp.watch
