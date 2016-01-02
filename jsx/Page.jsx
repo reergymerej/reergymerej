@@ -5,7 +5,7 @@ export default class Header extends React.Component {
         super(...args);
         this.state = {
             count: 0,
-            clicks: 0,
+            clicks: 100,
         };
     }
 

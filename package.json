@@ -12,17 +12,28 @@
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
+    "gulp-if": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
+    "reactify": "^1.1.1",
     "serve-favicon": "~2.3.0",
-    "uniq": "^1.0.1"
+    "uniq": "^1.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "yargs": "^3.31.0"
   },
   "main": "app.js",
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
+    "browserify": "^12.0.1",
     "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1"
   },
   "repository": {

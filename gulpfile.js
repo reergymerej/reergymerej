@@ -1,4 +1,4 @@
-"use strict";
+var path = require('path');
 
 var argv = require('yargs').argv,
 
@@ -11,7 +11,7 @@ var argv = require('yargs').argv,
     sourcemaps = require('gulp-sourcemaps'),
     browserify = require('browserify'),
     watchify   = require('watchify'),
-    reactify   = require('reactify'),
+    babelify   = require('babelify'),
     uglify     = require('gulp-uglify'),
 
     less       = require('gulp-less'),
@@ -26,10 +26,9 @@ var staticDirectory = './public/',
     cssMainFile     = './less/main.less',
     cssFiles        = './less/**/*.less';
 
-// Browserify bundler, configured for reactify with sources having a .jsx extension
 var bundler = browserify({
     entries: [jsMainFile],
-    transform: [reactify],
+    transform: [babelify],
     extensions: ['.jsx'],
     debug: !argv.production,
     cache: {},
@@ -54,7 +53,7 @@ gulp.task('css', function(){
     return gulp.src(cssMainFile)
         .pipe(less())
         .pipe(gulpif(argv.production, minifyCSS({keepBreaks:true})))
-        .pipe(gulp.dest(staticDirectory));
+        .pipe(gulp.dest(path.join(staticDirectory, 'css')));
 });
 
 // Watch JS + CSS using watchify + gulp.watch
