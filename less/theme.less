@@ -1,3 +1,25 @@
 @bg: #270044;
 @bg-dark: darken(@bg, 10%);
 @bg-light: lighten(@bg, 10%);
+
+@accent: darken(yellow, 10%);
+
+@link: darken(#09f, 20%);
+@link-visited: darken(@link, 15%);
+@link-hover: @accent;
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: @link;
+}
+
+a:visited {
+  color: @link-visited;
+}
+
+a:hover, a:active {
+  color: @link-hover;
+}
