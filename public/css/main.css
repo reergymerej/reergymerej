@@ -1,3 +1,7 @@
-body {
+#header {
   background-color: red;
+  border-bottom: 1px dotted yellow;
+}
+body {
+  background-color: aliceblue;
 }
