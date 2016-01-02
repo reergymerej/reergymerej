@@ -13,6 +13,7 @@ var argv = require('yargs').argv,
     watchify   = require('watchify'),
     babelify   = require('babelify'),
     uglify     = require('gulp-uglify'),
+    livereload = require('gulp-livereload'),
 
     less       = require('gulp-less'),
     minifyCSS  = require('gulp-minify-css');
@@ -45,7 +46,8 @@ gulp.task('js', function() {
         .pipe(gulpif(!argv.production, sourcemaps.init({loadMaps: true}))) // loads map from browserify file
         .pipe(gulpif(!argv.production, sourcemaps.write('./'))) // writes .map file
         .pipe(gulpif(argv.production, uglify()))
-        .pipe(gulp.dest(staticDirectory));
+        .pipe(gulp.dest(staticDirectory))
+        .pipe(livereload());
 });
 
 // Build CSS
@@ -60,6 +62,9 @@ gulp.task('css', function(){
 
 gulp.task('watchify', function() {
     var watcher  = watchify(bundler);
+    // TODO: move this into somewhere jsx and less watchers can use it.
+    livereload.listen();
+
     return watcher
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .on('update', function () {
