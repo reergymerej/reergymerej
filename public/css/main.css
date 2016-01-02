@@ -1,7 +1,8 @@
 #header {
   background-color: red;
-  border-bottom: 1px dotted yellow;
+  border-bottom: 5px dotted green;
 }
 body {
-  background-color: pink;
+  background-color: purple;
+  color: white;
 }

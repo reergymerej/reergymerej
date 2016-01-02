@@ -46,8 +46,7 @@ gulp.task('js', function() {
         .pipe(gulpif(!argv.production, sourcemaps.init({loadMaps: true}))) // loads map from browserify file
         .pipe(gulpif(!argv.production, sourcemaps.write('./'))) // writes .map file
         .pipe(gulpif(argv.production, uglify()))
-        .pipe(gulp.dest(staticDirectory))
-        .pipe(livereload());
+        .pipe(gulp.dest(staticDirectory));
 });
 
 // Build CSS
@@ -74,13 +73,15 @@ gulp.task('watchify', function() {
             .pipe(buffer())
             .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
             .pipe(sourcemaps.write('./')) // writes .map file
-            .pipe(gulp.dest(staticDirectory));
+            .pipe(gulp.dest(staticDirectory))
+            .pipe(livereload());
 
             gutil.log("Updated JavaScript sources");
         })
         .bundle() // Create the initial bundle when starting the task
         .pipe(source(jsBundleFile))
-        .pipe(gulp.dest(staticDirectory));
+        .pipe(gulp.dest(staticDirectory))
+        .pipe(livereload());
 });
 
 gulp.task('csswatch', function () {
