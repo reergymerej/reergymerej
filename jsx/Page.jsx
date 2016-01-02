@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default class Header extends React.Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
         this.state = {
             count: 0,
             clicks: 0,
