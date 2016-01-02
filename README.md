@@ -15,3 +15,4 @@ cd ./jsx && watchify -d -t -v [ babelify ] main.jsx -o ../public/js/main.js
 * Get Jest going.
 * live reload
 * make it easier to start up development (npm script or something)
+* use less
