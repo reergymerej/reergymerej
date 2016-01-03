@@ -2,12 +2,13 @@
 
 * npm install
 
-*start server*  
+*start server*
 DEBUG=reergymerej:* npm start
 
-*start watch* 
+*start watch*
 gulp watch
 
 ## TODO
 
 * Get Jest going.
+* routing

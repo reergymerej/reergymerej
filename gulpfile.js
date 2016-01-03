@@ -19,9 +19,12 @@ var argv = require('yargs').argv,
     minifyCSS  = require('gulp-minify-css');
 
 var staticDirectory = './public/',
+
+    jsDir = path.join(staticDirectory, 'js'),
+
     // Source and target JS files for Browserify
     jsMainFile      = './jsx/main.jsx',
-    jsBundleFile    = '../public/js/main.js',
+    jsBundleFile    = path.join(jsDir, 'main.js'),
 
     // Source and target LESS files
     cssMainFile     = './less/main.less',
@@ -46,7 +49,7 @@ gulp.task('js', function() {
         .pipe(gulpif(!argv.production, sourcemaps.init({loadMaps: true}))) // loads map from browserify file
         .pipe(gulpif(!argv.production, sourcemaps.write('./'))) // writes .map file
         .pipe(gulpif(argv.production, uglify()))
-        .pipe(gulp.dest(staticDirectory));
+        .pipe(gulp.dest('./'));
 });
 
 // Build CSS
@@ -59,28 +62,26 @@ gulp.task('css', function(){
 });
 
 // Watch JS + CSS using watchify + gulp.watch
-
 gulp.task('watchify', function() {
     var watcher  = watchify(bundler);
-    // TODO: move this into somewhere jsx and less watchers can use it.
     livereload.listen();
 
     return watcher
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+        .on('error', gutil.log.bind(gutil, 'watchify error'))
         .on('update', function () {
             watcher.bundle()
-            .pipe(source(jsBundleFile))
-            .pipe(buffer())
-            .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-            .pipe(sourcemaps.write('./')) // writes .map file
-            .pipe(gulp.dest(staticDirectory))
-            .pipe(livereload());
+                .pipe(source(jsBundleFile))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+                .pipe(sourcemaps.write('./')) // writes .map file
+                .pipe(gulp.dest('./'))
+                .pipe(livereload());
 
-            gutil.log("Updated JavaScript sources");
+            gutil.log('rebundled');
         })
         .bundle() // Create the initial bundle when starting the task
         .pipe(source(jsBundleFile))
-        .pipe(gulp.dest(staticDirectory))
+        .pipe(gulp.dest('./'))
         .pipe(livereload());
 });
 
