@@ -60,8 +60,18 @@ a:active {
 }
 .navigation li {
   flex: 1;
-  padding: 1em;
   text-align: center;
+  border: 1px solid #333;
+  border-right: none;
+  height: 3em;
+}
+.navigation li:nth-of-type(1) {
+  border-left: none;
+}
+.navigation li a {
+  display: block;
+  height: 3em;
+  line-height: 3em;
 }
 .navigation li a:visited {
   color: #09f;
@@ -69,6 +79,10 @@ a:active {
 .navigation li a:hover,
 .navigation li a:active {
   color: #ffff00;
+}
+.navigation li a:hover {
+  cursor: pointer;
+  background-color: #270044;
 }
 .page {
   padding: 1em;
