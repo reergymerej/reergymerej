@@ -1,11 +1,19 @@
 @import 'theme';
 
-#navigation {
+.navigation {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: row;
 
   li {
+    flex: 1;
     padding: 1em;
+    text-align: center;
+
+    a {
+      .amnesia-link;
+    }
   }
 }

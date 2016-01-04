@@ -4,10 +4,9 @@ import { Link } from 'react-router'
 export default class Navigation extends React.Component {
     render() {
         return (
-            <ul id="navigation">
-              <li><Link to="/about">About</Link></li>
-              <li>foo</li>
-              <li>foo</li>
+            <ul className="navigation">
+              <li><Link to="/foo">Foo</Link></li>
+              <li><Link to="/bar">Bar</Link></li>
             </ul>
         );
     }

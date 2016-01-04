@@ -4,22 +4,46 @@
 
 @accent: darken(yellow, 10%);
 
-@link: darken(#09f, 20%);
-@link-visited: darken(@link, 15%);
-@link-hover: @accent;
+@link: #09f;
+@link-visited: grey;
+@link-hover: lighten(@accent, 10%);
+
+@color: #ddd;
+@font-family: sans-serif;
+@background-color: @bg-dark;
+
+.hover {
+  &:hover, &:active {
+    color: @link-hover;
+  }
+}
 
 a {
   text-decoration: none;
+
+  &:link {
+    color: @link;
+  }
+
+  &:visited {
+    color: @link-visited;
+  }
+
+  .hover;
 }
 
-a:link {
-  color: @link;
+.subtle-link {
+  &:link, &:visited {
+    color: @color;
+  }
+
+  .hover;
 }
 
-a:visited {
-  color: @link-visited;
-}
+.amnesia-link {
+  &:visited {
+    color: @link;
+  }
 
-a:hover, a:active {
-  color: @link-hover;
+  .hover;
 }
