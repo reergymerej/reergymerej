@@ -9,7 +9,12 @@
         "node": true,
         "es6": true
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
-
+        "no-unused-vars": [2, {
+            "varsIgnorePattern": "React"
+        }]
     }
 }
