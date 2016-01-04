@@ -1,3 +1,5 @@
+@color: #ddd;
+
 @bg: #270044;
 @bg-dark: darken(@bg, 10%);
 @bg-light: lighten(@bg, 10%);
@@ -5,12 +7,17 @@
 @accent: darken(yellow, 10%);
 
 @link: #09f;
-@link-visited: grey;
+@link-visited: darken(@color, 30%);
 @link-hover: lighten(@accent, 10%);
 
-@color: #ddd;
 @font-family: sans-serif;
 @background-color: @bg-dark;
+
+@border: 1px solid green;
+
+
+// ===============================================================================
+// links
 
 .hover {
   &:hover, &:active {

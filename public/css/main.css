@@ -9,7 +9,7 @@ a:link {
   color: #09f;
 }
 a:visited {
-  color: grey;
+  color: #919191;
 }
 a:hover,
 a:active {
@@ -61,7 +61,7 @@ a:active {
 .navigation li {
   flex: 1;
   text-align: center;
-  border: 1px solid #333;
+  border: 1px solid green;
   border-right: none;
   height: 3em;
 }
@@ -82,7 +82,7 @@ a:active {
 }
 .navigation li a:hover {
   cursor: pointer;
-  background-color: #270044;
+  background-color: #440077;
 }
 .page {
   padding: 1em;
