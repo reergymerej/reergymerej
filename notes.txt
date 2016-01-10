@@ -43,3 +43,11 @@ How do you set up an https connection with Express?
                 openssl x509 -req -days 730 -in server.csr -CA server.crt -CAkey server.key -set_serial 01 -out ia.crt
 
                 openssl pkcs12 -export -out ia.p12 -inkey server.key -in server.crt -chain -CAfile server.crt
+
+===============================================================================
+
+Authentication
+
+* create a form
+* create a route
+* hardcode user/password on backend

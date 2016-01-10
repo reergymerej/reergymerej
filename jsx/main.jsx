@@ -6,6 +6,7 @@ import Reergymerej from './Reergymerej.jsx'
 import Home from './Home.jsx'
 import Foo from './Foo.jsx'
 import Bar from './Bar.jsx'
+import Login from './Login.jsx'
 
 const content = document.getElementById('content');
 
@@ -15,6 +16,7 @@ ReactDOM.render(
       <IndexRoute component={Home} />
       <Route path="foo" component={Foo} />
       <Route path="bar" component={Bar} />
+      <Route path="login" component={Login} />
     </Route>
   </Router>,
   content);
