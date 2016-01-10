@@ -4,3 +4,4 @@ bower_components
 public/js
 *.sublime-workspace
 *~
+*.log

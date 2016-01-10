@@ -5,16 +5,15 @@ var isValid = function (username, password) {
     return username === 'dude' && password === 'password';
 };
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 router.post('/login', function (req, res, next) {
     // TODO: hardcoding
     var username = req.body.username;
     var password = req.body.password;
     var valid = isValid(username, password);
+
+    req.session.views = req.session.views || 0;
+    req.session.views++;
+    console.log(req.session.views);
 
     if (valid) {
         req.session.authenticated = true;
