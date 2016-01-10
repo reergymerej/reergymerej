@@ -51,3 +51,10 @@ Authentication
 * create a form
 * create a route
 * hardcode user/password on backend
+* if valid, issue a session cookie
+    use https://github.com/expressjs/session
+    https://github.com/expressjs/session#example
+        resave: false,
+        saveUninitialized: false,
+
+* create a secured route, only allow viewing when authenticated

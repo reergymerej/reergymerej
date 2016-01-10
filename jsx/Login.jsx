@@ -6,7 +6,7 @@ export default class Login extends React.Component {
     super(...args);
     this.state = {
         username: 'dude',
-        password: 'superpassword',
+        password: 'password',
     };
   }
 
@@ -30,6 +30,7 @@ export default class Login extends React.Component {
                     />
                 <button type="submit">Authenticate</button>
             </form>
+            <button onClick={this.handleTestAuthClick.bind(this)}>test auth</button>
         </div>
     );
   }
@@ -47,8 +48,14 @@ export default class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     let {username, password} = this.state;
+    event.preventDefault();
     auth.login(username, password);
+  }
+
+  handleTestAuthClick() {
+    auth.testAuth().then(result => {
+      console.log('can access restricted resource?', result);
+    });
   }
 }

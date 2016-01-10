@@ -11,5 +11,20 @@ export default {
                 password
             }
         });
+    },
+
+    testAuth: () => {
+        return new Promise(resolve => {
+            $.ajax({
+                type: 'POST',
+                url: '/secured',
+                success: () => {
+                    resolve(true);
+                },
+                error: () => {
+                    resolve(false);
+                },
+            });
+        });
     }
 }

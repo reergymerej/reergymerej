@@ -87,7 +87,6 @@ a:active {
 .page {
   padding: 1em;
   line-height: 2em;
-  display: flex;
 }
 #footer {
   background-color: #440077;
