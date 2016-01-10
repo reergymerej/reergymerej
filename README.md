@@ -11,4 +11,7 @@ gulp watch
 ## TODO
 
 * Get Jest going.
-* routing
+* SSL
+* authorization
+    - server side
+* authentication

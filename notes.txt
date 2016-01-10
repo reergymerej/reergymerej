@@ -1,0 +1,45 @@
+How do you set up an https connection with Express?
+    Are https and ssl the same?
+        * https uses ssl or tls to secure traffic
+        https://www.instantssl.com/ssl-certificate-products/https.html
+
+    You need a certificate.
+        * buy one from a CA (certificate authority)
+        * create a self-signed
+        https://devcenter.heroku.com/articles/ssl-certificate-self
+
+          server.csr - BEGIN CERTIFICATE REQUEST
+        + server.key - private key
+          ______________________________________
+          server.crt - site certificate
+
+    Now that you have a cert, set up Express to use it.
+
+        * red: https://localhost
+
+
+        find where the server is created (/bin/www in Express 4)
+        add a secure server
+            http://expressjs.com/en/api.html#app.listen
+            * options http://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+
+            var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+            var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+
+        restart the server
+            ports under 1024 (including https 443) will require sudo
+                http://stackoverflow.com/questions/9164915/node-js-eacces-error-when-listening-on-most-ports
+
+
+        * load again https://localhost
+            * browser will complain because you're using a self-signed cert, proceed anyway
+
+            bypass this with creating your own authority certificate
+
+                This is a big pain in the ass and the cert may not even work.  Just ignore it in the browser.
+
+                http://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/
+
+                openssl x509 -req -days 730 -in server.csr -CA server.crt -CAkey server.key -set_serial 01 -out ia.crt
+
+                openssl pkcs12 -export -out ia.p12 -inkey server.key -in server.crt -chain -CAfile server.crt
