@@ -1,11 +1,12 @@
 import React from 'react'
+import auth from './services/auth.jsx'
 
 export default class Login extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = {
-        username: '',
-        password: '',
+        username: 'dude',
+        password: 'superpassword',
     };
   }
 
@@ -48,6 +49,6 @@ export default class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let {username, password} = this.state;
-    console.log(username, password);
+    auth.login(username, password);
   }
 }

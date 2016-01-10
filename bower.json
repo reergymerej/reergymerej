@@ -1,0 +1,22 @@
+{
+  "name": "reergymerej",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Jeremy Greer <jeremy.greer@prometheanworld.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/reergymerej/reergymerej",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0"
+  }
+}

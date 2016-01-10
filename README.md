@@ -1,6 +1,7 @@
 #reerGymereJ
 
 * npm install
+* bower install
 
 *start server*
 DEBUG=reergymerej:* npm start
