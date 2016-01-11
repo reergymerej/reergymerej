@@ -30,6 +30,12 @@ export default {
         });
     },
 
+    logout: () => {
+        return ajax({
+            url: '/logout'
+        });
+    },
+
     testAuth: () => {
         return ajax({
             url: '/secured',

@@ -12,13 +12,13 @@ export default class Reergymerej extends React.Component {
     }
 
     render() {
-
         let {children} = this.props;
 
         children = React.cloneElement(
             children,
             {
                 onAuthenticated: this.handleOnAuthenticated.bind(this),
+                onLogout: this.handleOnLogout.bind(this),
             }
         );
 
@@ -46,5 +46,9 @@ export default class Reergymerej extends React.Component {
 
     handleOnAuthenticated(user) {
         this.setState({user});
+    }
+
+    handleOnLogout() {
+        this.setState({user: null});
     }
 }

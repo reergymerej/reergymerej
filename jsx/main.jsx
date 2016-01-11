@@ -7,6 +7,7 @@ import Home from './Home.jsx'
 import Foo from './Foo.jsx'
 import Bar from './Bar.jsx'
 import Login from './Login.jsx'
+import Logout from './Logout.jsx'
 
 const content = document.getElementById('content');
 
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="foo" component={Foo} />
       <Route path="bar" component={Bar} />
       <Route path="login" component={Login} />
+      <Route path="logout" component={Logout} />
     </Route>
   </Router>,
   content);

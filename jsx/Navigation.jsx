@@ -25,6 +25,15 @@ const LINKS = [
             return !user;
         },
     },
+
+    {
+        id: '4',
+        path: '/logout',
+        name: 'Logout',
+        visible: (user) => {
+            return !!user;
+        },
+    },
 ];
 
 export default class Navigation extends React.Component {

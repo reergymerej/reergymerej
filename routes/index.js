@@ -27,6 +27,11 @@ router.post('/login', function (req, res, next) {
     }
 });
 
+router.post('/logout', function (req, res, next) {
+    req.session.authenticated = false;
+    res.end();
+});
+
 router.post('/secured', function (req, res, next) {
     if (req.session.authenticated) {
         res.jsonp({
