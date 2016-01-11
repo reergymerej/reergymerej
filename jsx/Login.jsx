@@ -2,6 +2,12 @@ import React from 'react'
 import auth from './services/auth.jsx'
 
 export default class Login extends React.Component {
+  static get defaultProps() {
+      return Object.assign({}, {
+          onAuthenticated: () => {},
+      });
+  }
+
   constructor(...args) {
     super(...args);
     this.state = {
@@ -35,6 +41,7 @@ export default class Login extends React.Component {
     );
   }
 
+  // TODO: dedup field change events
   onUsernameChange(event) {
     this.setState({
         username: event.target.value,
@@ -50,7 +57,9 @@ export default class Login extends React.Component {
   handleSubmit(event) {
     let {username, password} = this.state;
     event.preventDefault();
-    auth.login(username, password);
+    auth.login(username, password).then(user => {
+      this.props.onAuthenticated(user);
+    });
   }
 
   handleTestAuthClick() {

@@ -21,15 +21,13 @@ const ajax = (options = {}) => {
 
 export default {
     login: (username, password) => {
-        ajax({
+        return ajax({
             url: '/login',
             data: {
                 username,
                 password
             }
-        }).then(resp => {
-            console.log(resp);
-        })
+        });
     },
 
     testAuth: () => {
@@ -39,6 +37,9 @@ export default {
     },
 
     getUser: () => {
-
-    }
+        return ajax({
+            type: 'GET',
+            url: '/user',
+        })
+    },
 }

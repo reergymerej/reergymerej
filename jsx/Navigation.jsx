@@ -21,6 +21,9 @@ const LINKS = [
         id: '3',
         path: '/login',
         name: 'Login',
+        visible: (user) => {
+            return !user;
+        },
     },
 ];
 
@@ -36,7 +39,17 @@ export default class Navigation extends React.Component {
     }
 
     renderLinks() {
-        return LINKS.map(link => {
+        const {user} = this.props;
+
+        return LINKS.filter(link => {
+
+            if (link.visible) {
+                return link.visible(user);
+            } else {
+                return true;
+            }
+
+            }).map(link => {
             return (
                 <li key={link.id}>
                     <Link to={link.path}>{link.name}</Link>

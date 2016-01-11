@@ -30,15 +30,6 @@ app.use(session({
   cookie: { secure: true },
 }));
 
-app.use(function(req, res, next) {
-    req.session.views = req.session.views || 0;
-    req.session.views++;
-    console.log(req.session.views);
-
-    next();
-});
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
