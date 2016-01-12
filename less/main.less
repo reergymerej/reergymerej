@@ -18,3 +18,77 @@ body {
       height: 100%;
     }
 }
+
+// ===============================================================================
+// selected text
+.selectedText {
+  background: greenyellow;
+  color: #000;
+}
+
+::selection {
+  .selectedText;
+}
+::-moz-selection {
+  .selectedText;
+}
+
+// ===============================================================================
+// links
+
+.hover {
+  &:hover, &:active {
+    color: @link-hover;
+  }
+}
+
+// TODO: use "extend" to clean this up
+a {
+  text-decoration: none;
+
+  &:link {
+    color: @link;
+  }
+
+  &:visited {
+    color: @link-visited;
+  }
+
+  .hover;
+}
+
+.subtle-link {
+  &:link, &:visited {
+    color: @color;
+  }
+
+  .hover;
+}
+
+.amnesia-link {
+  &:visited {
+    color: @link;
+  }
+
+  .hover;
+}
+
+// ===============================================================================
+// buttons
+
+button {
+    padding: 0.5em 1em;
+    border: 1px solid @base;
+    // background-color: @link;
+    border-color: @link;
+    background-color: @base;
+    color: @link;
+    // line-height:
+}
+
+button:hover {
+    cursor: pointer;
+    // background-color: @link-hover;
+    border-color: @link-hover;
+    color: @link-hover;
+}

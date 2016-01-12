@@ -25,11 +25,10 @@ const LINKS = [
             return !user;
         },
     },
-
     {
         id: '4',
-        path: '/logout',
-        name: 'Logout',
+        path: '/profile',
+        name: 'Profile',
         visible: (user) => {
             return !!user;
         },

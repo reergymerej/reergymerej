@@ -1,35 +1,3 @@
-.hover:hover,
-.hover:active {
-  color: #ffff00;
-}
-a {
-  text-decoration: none;
-}
-a:link {
-  color: #09f;
-}
-a:visited {
-  color: #919191;
-}
-a:hover,
-a:active {
-  color: #ffff00;
-}
-.subtle-link:link,
-.subtle-link:visited {
-  color: #ddd;
-}
-.subtle-link:hover,
-.subtle-link:active {
-  color: #ffff00;
-}
-.amnesia-link:visited {
-  color: #09f;
-}
-.amnesia-link:hover,
-.amnesia-link:active {
-  color: #ffff00;
-}
 #header {
   background-color: #270044;
   padding: 0.5em 1em;
@@ -61,7 +29,7 @@ a:active {
 .navigation li {
   flex: 1;
   text-align: center;
-  border: 1px solid green;
+  border: 1px solid #3b6200;
   border-right: none;
   height: 3em;
 }
@@ -123,4 +91,60 @@ body {
 body #content,
 body #reergymerej {
   height: 100%;
+}
+.selectedText {
+  background: greenyellow;
+  color: #000;
+}
+::selection {
+  background: greenyellow;
+  color: #000;
+}
+::-moz-selection {
+  background: greenyellow;
+  color: #000;
+}
+.hover:hover,
+.hover:active {
+  color: #ffff00;
+}
+a {
+  text-decoration: none;
+}
+a:link {
+  color: #09f;
+}
+a:visited {
+  color: #919191;
+}
+a:hover,
+a:active {
+  color: #ffff00;
+}
+.subtle-link:link,
+.subtle-link:visited {
+  color: #ddd;
+}
+.subtle-link:hover,
+.subtle-link:active {
+  color: #ffff00;
+}
+.amnesia-link:visited {
+  color: #09f;
+}
+.amnesia-link:hover,
+.amnesia-link:active {
+  color: #ffff00;
+}
+button {
+  padding: 0.5em 1em;
+  border: 1px solid #270044;
+  border-color: #09f;
+  background-color: #270044;
+  color: #09f;
+}
+button:hover {
+  cursor: pointer;
+  border-color: #ffff00;
+  color: #ffff00;
 }

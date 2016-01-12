@@ -1,6 +1,8 @@
 // TODO: define path for jQuery
 import $ from '../../bower_components/jquery/dist/jquery.min'
 
+let user;
+
 const ajax = (options = {}) => {
     return new Promise((resolve, reject) => {
         options = Object.assign({
@@ -43,9 +45,15 @@ export default {
     },
 
     getUser: () => {
-        return ajax({
-            type: 'GET',
-            url: '/user',
-        })
+        return new Promise((resolve, reject) => {
+            if (user) {
+                resolve(user);
+            } else {
+                ajax({
+                    type: 'GET',
+                    url: '/user',
+                }).then(resolve, reject);
+            }
+        });
     },
 }

@@ -58,7 +58,6 @@ export default class Login extends React.Component {
     event.preventDefault();
     auth.login(username, password).then(user => {
       this.props.onAuthenticated(user);
-      this.props.history.push('/');
     });
   }
 }

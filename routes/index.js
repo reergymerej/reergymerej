@@ -7,7 +7,8 @@ var isValid = function (username, password) {
 
 var getUser = function () {
     return {
-        authenticated: true
+        authenticated: true,
+        name: 'dude',
     };
 };
 

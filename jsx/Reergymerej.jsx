@@ -46,6 +46,7 @@ export default class Reergymerej extends React.Component {
 
     handleOnAuthenticated(user) {
         this.setState({user});
+        this.props.history.push('/profile');
     }
 
     handleOnLogout() {
