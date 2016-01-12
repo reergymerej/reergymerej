@@ -1,25 +1,7 @@
-// TODO: define path for jQuery
-import $ from '../../bower_components/jquery/dist/jquery.min'
+import generic from './generic.jsx';
 
+const {ajax} = generic
 let user;
-
-const ajax = (options = {}) => {
-    return new Promise((resolve, reject) => {
-        options = Object.assign({
-            type: 'POST',
-            url: '/',
-            data: null,
-            success: resp => {
-                resolve(resp);
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                reject(errorThrown);
-            }
-        }, options);
-
-        $.ajax(options);
-    });
-};
 
 export default {
     login: (username, password) => {

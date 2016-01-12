@@ -138,13 +138,20 @@ a:active {
 }
 button {
   padding: 0.5em 1em;
-  border: 1px solid #270044;
-  border-color: #09f;
+  letter-spacing: 0.1em;
+  border: none;
+  font-size: 1em;
   background-color: #270044;
   color: #09f;
 }
 button:hover {
   cursor: pointer;
-  border-color: #ffff00;
   color: #ffff00;
+  background-color: #440077;
+}
+form input {
+  letter-spacing: 0.1em;
+  border: 1px solid #3b6200;
+  padding: 0.5em;
+  font-size: 1em;
 }

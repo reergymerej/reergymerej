@@ -78,17 +78,28 @@ a {
 
 button {
     padding: 0.5em 1em;
-    border: 1px solid @base;
-    // background-color: @link;
-    border-color: @link;
+    letter-spacing: 0.1em;
+    border: none;
+    font-size: 1em;
     background-color: @base;
     color: @link;
-    // line-height:
 }
 
 button:hover {
     cursor: pointer;
-    // background-color: @link-hover;
-    border-color: @link-hover;
     color: @link-hover;
+    background-color: @base-light;
+}
+
+// ===============================================================================
+// forms
+
+form {
+  input {
+    padding: 0.5em;
+    letter-spacing: 0.1em;
+    border: @border;
+    padding: 0.5em;
+    font-size: 1em;
+  }
 }

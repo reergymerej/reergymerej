@@ -4,7 +4,7 @@
 * bower install
 
 *start server*
-DEBUG=reergymerej:* npm start
+sudo DEBUG=reergymerej:* npm start
 
 *start watch*
 gulp watch
@@ -12,12 +12,16 @@ gulp watch
 *live reload*
 start chrome plugin
 
+===============================================================================
+
 ## TODO
 
+* watch for server changes and live reload
 * Get Jest going.
-* SSL
 * authorization
     - server side
 * authentication
 
 * regenerate ssl cert since I checked in my quick version to github
+
+* pull last updated time from server
