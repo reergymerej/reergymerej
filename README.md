@@ -6,6 +6,8 @@
 *start server*
 sudo DEBUG=reergymerej:* npm start
 
+When using nvm on Linux, add alias as described [here](https://github.com/creationix/nvm/issues/43#issuecomment-139739406).
+
 *start watch*
 gulp watch
 
