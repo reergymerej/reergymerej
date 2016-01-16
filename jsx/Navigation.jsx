@@ -3,22 +3,21 @@ import { Link } from 'react-router'
 
 const LINKS = [
     {
-        id: '0',
         path: '/',
         name: 'Home',
     },
     {
-        id: '1',
         path: '/foo',
         name: 'Foo',
     },
     {
-        id: '2',
         path: '/bar',
         name: 'Bar',
     },
+    // {
+
+    // },
     {
-        id: '3',
         path: '/login',
         name: 'Login',
         visible: (user) => {
@@ -26,7 +25,6 @@ const LINKS = [
         },
     },
     {
-        id: '4',
         path: '/profile',
         name: 'Profile',
         visible: (user) => {
@@ -34,6 +32,8 @@ const LINKS = [
         },
     },
 ];
+
+LINKS.forEach((link, i) => link.id = i + '');
 
 export default class Navigation extends React.Component {
     render() {
@@ -58,11 +58,11 @@ export default class Navigation extends React.Component {
             }
 
             }).map(link => {
-            return (
-                <li key={link.id}>
-                    <Link to={link.path}>{link.name}</Link>
-                </li>
-            );
-        });
+                return (
+                    <li key={link.id}>
+                        <Link to={link.path}>{link.name}</Link>
+                    </li>
+                );
+            });
     }
 }

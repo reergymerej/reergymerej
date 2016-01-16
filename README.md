@@ -25,5 +25,3 @@ start chrome plugin
 * authentication
 
 * regenerate ssl cert since I checked in my quick version to github
-
-* pull last updated time from server
