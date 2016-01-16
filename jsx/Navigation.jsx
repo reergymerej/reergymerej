@@ -33,7 +33,7 @@ const LINKS = [
     },
 ];
 
-LINKS.forEach((link, i) => link.id = i + '');
+LINKS.forEach((link, i) => link.key = i + '');
 
 export default class Navigation extends React.Component {
     render() {
@@ -59,7 +59,7 @@ export default class Navigation extends React.Component {
 
             }).map(link => {
                 return (
-                    <li key={link.id}>
+                    <li key={link.key}>
                         <Link to={link.path}>{link.name}</Link>
                     </li>
                 );
