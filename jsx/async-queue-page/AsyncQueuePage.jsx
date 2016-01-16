@@ -1,14 +1,47 @@
 import React from 'react'
+import AsyncQueue from './AsyncQueue.jsx'
 
 export default class Profile extends React.Component {
     componentDidMount() {
-        setTimeout(() => {
-            this.print('I should be first.');
-        }, 1000);
+        let printQueue = new AsyncQueue(this.print, this);
 
-        setTimeout(() => {
-            this.print('I should be second.');
-        }, 333);
+        // use this
+        printQueue.push(ticket => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    ticket.redeem('I should be first.');
+                    resolve();
+                }, 500);
+            });
+        });
+
+        printQueue.push(ticket => {
+            ticket.redeem('I should be second.');
+        });
+
+        printQueue.push(ticket => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    ticket.redeem('I should be third.');
+                    resolve();
+                }, 700);
+            });
+        });
+
+        printQueue.push(ticket => {
+            setTimeout(() => {
+                ticket.redeem('I should be last because I messed up.');
+            }, 100);
+        });
+
+        printQueue.push(ticket => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    ticket.redeem('I should be fourth.');
+                    resolve();
+                }, 200);
+            });
+        });
     }
 
     render() {
