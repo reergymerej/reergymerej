@@ -8,7 +8,7 @@ import Foo from './Foo.jsx'
 import Bar from './Bar.jsx'
 import Login from './Login.jsx'
 import Profile from './Profile.jsx'
-import AsyncQueuePage from './AsyncQueuePage.jsx'
+import AsyncQueuePage from './async-queue-page/AsyncQueuePage.jsx'
 
 const content = document.getElementById('content');
 
