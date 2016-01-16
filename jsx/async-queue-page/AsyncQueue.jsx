@@ -1,3 +1,11 @@
+const getTicket = Symbol();
+const queueTicket = Symbol();
+const dequeueTicket = Symbol();
+const getTicketQueueIndex = Symbol();
+const getPreceedingTickets = Symbol();
+const closeTicket = Symbol();
+const queue = Symbol();
+
 export default class AsyncQueue {
     /**
     * @param {Function} client - the function that this queue will feed into
@@ -5,19 +13,18 @@ export default class AsyncQueue {
     */
     constructor(client, scope) {
         // TODO: Figure out how to do this without specifying scope if possible.
-        // TODO: use symbols to make these private
         this.client = client;
         this.scope = scope;
-        this._queue = [];
+        this[queue] = [];
     }
 
     /**
     * Adds to the queue.
-    * @param {Function} beforeClient - passed a ticket that
+    * @param {Function} preRedeem - passed a ticket that
     * can be redeemed, leading to executing the client
     */
-    push(beforeClient) {
-        let ticket = this._getTicket();
+    push(preRedeem) {
+        let ticket = this[getTicket]();
 
         let trashTicketIfNotRedeemed = () => {
             if (!ticket.isRedeemed) {
@@ -25,14 +32,14 @@ export default class AsyncQueue {
             }
         };
 
-        // Throw the ticket away if the beforeClient forgot to redeem it.
-        Promise.all([beforeClient(ticket)]).then(
+        // Throw the ticket away if the preRedeem forgot to redeem it.
+        Promise.all([preRedeem(ticket)]).then(
             trashTicketIfNotRedeemed,
             trashTicketIfNotRedeemed
         );
     }
 
-    _getTicket() {
+    [getTicket]() {
         let resolveTicket;
         let ticket = new Promise(resolve => resolveTicket = resolve);
 
@@ -47,49 +54,49 @@ export default class AsyncQueue {
                 ticket.isRedeemed = true;
             }
 
-            let preceedingTickets = this._getPreceedingTickets(ticket);
+            let preceedingTickets = this[getPreceedingTickets](ticket);
 
             return Promise.all(preceedingTickets)
                 .then(() => {
-                    this._closeTicket(ticket);
+                    this[closeTicket](ticket);
                     return this.client.apply(this.scope, args);
                 });
         };
 
         ticket.trash = () => {
             ticket.isTrashed = true;
-            this._closeTicket(ticket);
+            this[closeTicket](ticket);
         };
 
-        this._queueTicket(ticket);
+        this[queueTicket](ticket);
 
         return ticket;
     }
 
-    _queueTicket(ticket) {
-        this._queue.push(ticket);
+    [queueTicket](ticket) {
+        this[queue].push(ticket);
     }
 
-    _dequeueTicket(ticket) {
-        let ticketIndex = this._getTicketQueueIndex(ticket);
+    [dequeueTicket](ticket) {
+        let ticketIndex = this[getTicketQueueIndex](ticket);
         if (ticketIndex > -1) {
-            this._queue.splice(ticketIndex, 1);
+            this[queue].splice(ticketIndex, 1);
         }
     }
 
-    _getTicketQueueIndex(ticket) {
-        return this._queue.indexOf(ticket);
+    [getTicketQueueIndex](ticket) {
+        return this[queue].indexOf(ticket);
     }
 
-    _getPreceedingTickets(ticket) {
-        let index = this._getTicketQueueIndex(ticket);
+    [getPreceedingTickets](ticket) {
+        let index = this[getTicketQueueIndex](ticket);
         // If this ticket is not in the queue, everything preceeds it.
         let length = index > -1 ? index : undefined;
-        return this._queue.slice(0, length);
+        return this[queue].slice(0, length);
     }
 
-    _closeTicket(ticket) {
-        this._dequeueTicket(ticket);
+    [closeTicket](ticket) {
+        this[dequeueTicket](ticket);
         ticket.resolve();
     }
 }
