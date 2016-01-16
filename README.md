@@ -16,6 +16,12 @@ start chrome plugin
 
 ===============================================================================
 
+## Dev Notes
+
+UI routes are in main.jsx
+
+===============================================================================
+
 ## TODO
 
 * watch for server changes and live reload

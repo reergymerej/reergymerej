@@ -8,6 +8,7 @@ import Foo from './Foo.jsx'
 import Bar from './Bar.jsx'
 import Login from './Login.jsx'
 import Profile from './Profile.jsx'
+import AsyncQueuePage from './AsyncQueuePage.jsx'
 
 const content = document.getElementById('content');
 
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route path="bar" component={Bar} />
       <Route path="login" component={Login} />
       <Route path="profile" component={Profile} />
+      <Route path="async-queue" component={AsyncQueuePage} />
     </Route>
   </Router>,
   content);

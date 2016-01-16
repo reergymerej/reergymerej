@@ -14,9 +14,10 @@ const LINKS = [
         path: '/bar',
         name: 'Bar',
     },
-    // {
-
-    // },
+    {
+        path: '/async-queue',
+        name: 'AsyncQueue',
+    },
     {
         path: '/login',
         name: 'Login',
