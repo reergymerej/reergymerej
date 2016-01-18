@@ -56,7 +56,7 @@ export default class Profile extends React.Component {
 
         setTimeout(() => {
             this.print(7, 'printing');
-        }, 2000);
+        }, 1100);
 
         // functionQueuer.unwrap({
         //     scope: this,
