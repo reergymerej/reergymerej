@@ -38,10 +38,58 @@ export default {
 
         const reservations = [];
 
+        /**
+        * adds a reservation for the wrapped function
+        * @return {Promise}
+        */
+        const reserve = () => {
+            let _resolve, _reject;
+
+            let reservation = new Promise((resolve, reject) => {
+                _resolve = resolve;
+                _reject = reject;
+            });
+
+            reservation.use = (...args) => {
+                const index = reservations.indexOf(reservation);
+
+                if (reservation.used) {
+                    throw 'reservation already used';
+                } else {
+                    reservation.used = true;
+                }
+
+                return afterPromises(reservations.slice(0, index))
+                    .then(() => {
+                        return queuedFunction.original.apply(scope, args);
+                    })
+                    .then(
+                        result => _resolve(result),
+                        result => _reject(result)
+                    );
+            };
+
+            // When reservation is done, remove it.
+            const clear = (result) => {
+                removeReservation(reservation);
+
+                // Relay the reservation result in case someone else
+                // in the chain wants it.
+                return result;
+            };
+
+            // remove the reservation once it's done
+            reservation.then(clear, clear);
+
+            // add to our reservation list
+            reservations.push(reservation);
+
+            return reservation;
+        };
+
         const queuedFunction = (...args) => {
-            return afterPromises(reservations)
-                // call the original
-                .then(() => queuedFunction.original.apply(scope, args));
+            // If you call this directly, we're going to create a reservation for you, you heathen.
+            return reserve().use(...args);
         };
 
         const removeReservation = (promise) => {
@@ -52,27 +100,7 @@ export default {
             return reservations.length;
         };
 
-        /**
-        * adds a reservation for the wrapped function
-        * @param {Promise}
-        * @return {Number} length of reservations
-        */
-        queuedFunction.reserve = (promise) => {
-
-            // When reservation is done, remove it.
-            const clear = (result) => {
-                removeReservation(promise);
-
-                // Relay the reservation result in case someone else
-                // in the chain wants it.
-                return result;
-            };
-
-            promise.then(clear, clear);
-
-            return reservations.push(promise);
-        };
-
+        queuedFunction.reserve = reserve;
         queuedFunction.original = scope[name];
 
         scope[name] = queuedFunction;

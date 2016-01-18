@@ -36,34 +36,32 @@ export default class Profile extends React.Component {
 
         this.print(1, 'printing');
 
-        this.print.reserve(new Promise(resolve => {
-            setTimeout(() => {
-                // this.print(2, 'printing');
-                resolve('all done');
-            }, 1000);
-        }));
+        let reservation2 = this.print.reserve();
+        setTimeout(() => {
+            reservation2.use(2, 'printing');
+        }, 600);
 
         this.print(3, 'printing');
 
-        this.print.reserve(new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // this.print(5, 'printing');
-                reject();
-            }, 300);
-        }));
+        let reservation5 = this.print.reserve();
+        setTimeout(() => {
+            reservation5.use(5, 'printing').then(result => console.log('result', result));
+        }, 300);
 
-        this.print(6, 'printing');
+        this.print(6, 'printing').then(result => {
+            console.log('result', result);
+        });
 
         setTimeout(() => {
             this.print(7, 'printing');
-        }, 1100);
+        }, 650);
 
-        // functionQueuer.unwrap({
-        //     scope: this,
-        //     name: 'print',
-        // });
+        functionQueuer.unwrap({
+            scope: this,
+            name: 'print',
+        });
 
-        // this.print(0, 'printing');
+        this.print(0, 'printing');
     }
 
     // aaa(num) {
@@ -87,5 +85,6 @@ export default class Profile extends React.Component {
 
     print(num, message) {
         console.log(num, message, this.correctScope);
+        return 'done printing';
     }
 }
