@@ -82,7 +82,7 @@ export default {
     * restores original function
     * @param {Object} options.scope
     * @param {String} options.name
-    * @example functionQueuer.wrap({ scope: console, name: 'log' })
+    * @example functionQueuer.unwrap({ scope: console, name: 'log' })
     */
     unwrap(options) {
         const { scope, name } = options;
