@@ -1,47 +1,11 @@
 import React from 'react'
-import AsyncQueue from './AsyncQueue.jsx'
+// import asyncQueue from './asyncQueue.jsx'
+import functionQueuer from './functionQueuer.jsx'
 
 export default class Profile extends React.Component {
-    componentDidMount() {
-        let printQueue = new AsyncQueue(this.print, this);
-
-        // use this
-        printQueue.push(ticket => {
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    ticket.redeem('I should be first.');
-                    resolve();
-                }, 500);
-            });
-        });
-
-        printQueue.push(ticket => {
-            ticket.redeem('I should be second.');
-        });
-
-        printQueue.push(ticket => {
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    ticket.redeem('I should be third.');
-                    resolve();
-                }, 700);
-            });
-        });
-
-        printQueue.push(ticket => {
-            setTimeout(() => {
-                ticket.redeem('I should be last because I messed up.');
-            }, 100);
-        });
-
-        printQueue.push(ticket => {
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    ticket.redeem('I should be fourth.');
-                    resolve();
-                }, 200);
-            });
-        });
+    constructor(...args) {
+        super(...args);
+        this.correctScope = true;
     }
 
     render() {
@@ -53,7 +17,75 @@ export default class Profile extends React.Component {
         );
     }
 
-    print(message) {
-        console.log(message);
+    componentDidMount() {
+        // asyncQueue.use({
+        //     queuedFunctionName: 'print',
+        //     scope: this,
+        //     autoReservingFunctionNames: ['aaa', 'bbb', 'ccc'],
+        // });
+
+        // this.aaa(1);
+        // this.bbb(2);
+        // this.ccc(3);
+        // this.print(4, 'done with direct call');
+
+        functionQueuer.wrap({
+            scope: this,
+            name: 'print',
+        });
+
+        this.print(1, 'printing');
+
+        this.print.reserve(new Promise(resolve => {
+            setTimeout(() => {
+                // this.print(2, 'printing');
+                resolve('all done');
+            }, 1000);
+        }));
+
+        this.print(3, 'printing');
+
+        this.print.reserve(new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // this.print(5, 'printing');
+                reject();
+            }, 300);
+        }));
+
+        this.print(6, 'printing');
+
+        setTimeout(() => {
+            this.print(7, 'printing');
+        }, 2000);
+
+        // functionQueuer.unwrap({
+        //     scope: this,
+        //     name: 'print',
+        // });
+
+        // this.print(0, 'printing');
+    }
+
+    // aaa(num) {
+    //     setTimeout(() => {
+    //         this.print(num, 'done with aaa', this.correctScope);
+    //     }, 100);
+    // }
+
+    // bbb(num) {
+    //     return new Promise(resolve => {
+    //         setTimeout(() => {
+    //             this.print(num, 'done with bbb', this.correctScope);
+    //             resolve();
+    //         }, 50);
+    //     });
+    // }
+
+    // ccc(num) {
+    //     this.print(num, 'done with ccc', this.correctScope);
+    // }
+
+    print(num, message) {
+        console.log(num, message, this.correctScope);
     }
 }
