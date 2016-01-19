@@ -143,11 +143,15 @@ button {
   font-size: 1em;
   background-color: #270044;
   color: #09f;
+  cursor: pointer;
 }
 button:hover {
-  cursor: pointer;
   color: #ffff00;
   background-color: #440077;
+}
+button:active {
+  background-color: #ffff00;
+  color: #440077;
 }
 form input {
   letter-spacing: 0.1em;

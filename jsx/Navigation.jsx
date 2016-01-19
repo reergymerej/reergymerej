@@ -15,8 +15,8 @@ const LINKS = [
         name: 'Bar',
     },
     {
-        path: '/async-queue',
-        name: 'AsyncQueue',
+        path: '/function-queuer',
+        name: 'Function Queuer',
     },
     {
         path: '/login',

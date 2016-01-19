@@ -54,7 +54,7 @@ router.get('/user', function (req, res, next) {
 });
 
 router.get('/last-updated', function (req, res, next) {
-    res.end('January 15, 2016');
+    res.end('January 19, 2016');
 });
 
 module.exports = router;

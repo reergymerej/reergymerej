@@ -83,12 +83,17 @@ button {
     font-size: 1em;
     background-color: @base;
     color: @link;
+    cursor: pointer;
 }
 
 button:hover {
-    cursor: pointer;
     color: @link-hover;
     background-color: @base-light;
+}
+
+button:active {
+    background-color: @link-hover;
+    color: @base-light;
 }
 
 // ===============================================================================
