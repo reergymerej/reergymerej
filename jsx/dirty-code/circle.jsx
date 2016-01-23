@@ -1,3 +1,5 @@
+import { distance } from './util.jsx'
+
 let circle = (options) => {
     let {
         canvas,
@@ -7,6 +9,7 @@ let circle = (options) => {
         xSpeed = 0,
         ySpeed = 0,
         influence = -3,
+        isHero = false,
     } = options;
 
     let _x = x;
@@ -17,11 +20,27 @@ let circle = (options) => {
     let context = canvas.getContext('2d');
     let {width: canvasWidth, height: canvasHeight} = canvas;
 
+    let getFillStyle = () => {
+
+        if (!fillStyle) {
+            let value = (influence * 10) + 128
+            if (value < 0) {
+                value = 0;
+            } else if (value > 256) {
+                value = 256;
+            }
+
+            return `rgb(${value}, ${value}, ${value})`;
+        } else {
+            return fillStyle;
+        }
+    };
+
     let me = {
         draw: () => {
             context.beginPath();
             context.arc(_x, _y, _radius, 0, 2 * Math.PI, false);
-            context.fillStyle = fillStyle;
+            context.fillStyle = getFillStyle();
             context.fill();
             // context.lineWidth = 5;
             // context.strokeStyle = fillStyle;
@@ -31,6 +50,11 @@ let circle = (options) => {
         move: (x, y) => {
             _x += x;
             _y += y;
+        },
+
+        setPosition: (x, y) => {
+            _x = x;
+            _y = y;
         },
 
         setSpeed: (x, y) => {
@@ -75,8 +99,37 @@ let circle = (options) => {
             return influence;
         },
 
+        getNormalizedInfluence: () => {
+            let influence = me.getInfluence();
+            return (influence < 0
+                            ? -1
+                            : 1) / 2;
+        },
+
         influence: (change) => {
             influence += change;
+            if (influence > 12) {
+                influence = 12;
+            } else if (influence < -12) {
+                influence = -12;
+            }
+            console.log('influence:', influence);
+        },
+
+        getRadius: () => {
+            return _radius;
+        },
+
+        getDistanceFrom: (point) => {
+            return distance(point, me.getPosition());
+        },
+
+        canInfluence: (otherDev) => {
+            return me.isHero() || !otherDev.isHero();
+        },
+
+        isHero: () => {
+            return !!isHero;
         },
     };
 
