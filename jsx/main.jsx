@@ -8,9 +8,11 @@ import Foo from './Foo.jsx'
 import Bar from './Bar.jsx'
 import Login from './Login.jsx'
 import Profile from './Profile.jsx'
-import AsyncQueuePage from './function-queuer/FunctionQueuerPage.jsx'
+import DirtyCodePage from './dirty-code/DirtyCodePage.jsx'
+import FunctionQueuerPage from './function-queuer/FunctionQueuerPage.jsx'
 
 const content = document.getElementById('content');
+// TODO: figure out an easy way to define the paths & navigation in one
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -20,7 +22,8 @@ ReactDOM.render(
       <Route path="bar" component={Bar} />
       <Route path="login" component={Login} />
       <Route path="profile" component={Profile} />
-      <Route path="function-queuer" component={AsyncQueuePage} />
+      <Route path="dirty-code" component={DirtyCodePage} />
+      <Route path="function-queuer" component={FunctionQueuerPage} />
     </Route>
   </Router>,
   content);

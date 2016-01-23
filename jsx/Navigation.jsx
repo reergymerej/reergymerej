@@ -15,6 +15,10 @@ const LINKS = [
         name: 'Bar',
     },
     {
+        path: '/dirty-code',
+        name: 'Dirty Code',
+    },
+    {
         path: '/function-queuer',
         name: 'Function Queuer',
     },
