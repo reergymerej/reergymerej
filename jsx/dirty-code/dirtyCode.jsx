@@ -1,4 +1,5 @@
 import circle from './circle.jsx'
+import code from './code.jsx'
 
 let rand  = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -11,38 +12,51 @@ export default (canvas) => {
     const centerX = width / 2;
     const centerY = height / 2;
 
-    let hero = circle({
+    let codeLayer = code({
         canvas,
-        x: centerX,
-        y: centerY,
-        radius: 25,
-        fillStyle: '#fff',
-        xSpeed: rand(2, 3),
-        ySpeed: rand(2, 3),
+        blockWidth: 25,
+        blockHeight: 25,
     });
 
+    let hero = circle({
+        canvas,
+        x: rand(0, width),
+        y: rand(0, height),
+        radius: 12,
+        fillStyle: '#fff',
+        xSpeed: 8,
+        ySpeed: rand(1, 5),
+        influence: 10,
+    });
+
+    let makeAnotherDev = () => {
+        return circle({
+            canvas,
+            x: rand(0, width),
+            y: rand(0, height),
+            radius: 8,
+            fillStyle: '#666',
+            xSpeed: rand(-5, 5),
+            ySpeed: rand(-5, 5),
+        });
+    };
+
     let devs = [
+        makeAnotherDev(),
+        makeAnotherDev(),
+        makeAnotherDev(),
         hero,
-        // circle({
-        //     canvas,
-        //     x: centerX,
-        //     y: centerY,
-        //     radius: 20,
-        //     fillStyle: '#000',
-        //     xSpeed: rand(2, 3),
-        //     ySpeed: rand(2, 3),
-        // })
     ];
 
     let clearCanvas = () => {
-        context.fillStyle = '#fff';
-        context.fillRect(0, 0, width, height);
+        context.clearRect(0, 0, width, height);
     };
 
     let loop = () => {
         // update actors
         devs.forEach(dev => {
             dev.updatePosition();
+            codeLayer.touch(dev);
         });
 
         clearCanvas();
@@ -50,6 +64,8 @@ export default (canvas) => {
         // save canvas state
 
         // draw
+        codeLayer.draw();
+
         devs.forEach(dev => {
             dev.draw();
         });

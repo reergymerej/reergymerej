@@ -5,7 +5,8 @@ let circle = (options) => {
         radius,
         fillStyle,
         xSpeed = 0,
-        ySpeed = 0
+        ySpeed = 0,
+        influence = -3,
     } = options;
 
     let _x = x;
@@ -22,8 +23,8 @@ let circle = (options) => {
             context.arc(_x, _y, _radius, 0, 2 * Math.PI, false);
             context.fillStyle = fillStyle;
             context.fill();
-            context.lineWidth = 5;
-            context.strokeStyle = '#000';
+            // context.lineWidth = 5;
+            // context.strokeStyle = fillStyle;
             context.stroke();
         },
 
@@ -61,6 +62,21 @@ let circle = (options) => {
                 _y = -_y;
                 _ySpeed *= -1;
             }
+        },
+
+        getPosition: () => {
+            return {
+                x: _x,
+                y: _y,
+            };
+        },
+
+        getInfluence: () => {
+            return influence;
+        },
+
+        influence: (change) => {
+            influence += change;
         },
     };
 
