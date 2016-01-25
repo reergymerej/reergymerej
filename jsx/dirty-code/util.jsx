@@ -15,3 +15,12 @@ export function distance(point1, point2) {
 
     return Math.sqrt(xDist * xDist + yDist * yDist);
 };
+
+export function flip(num, axis) {
+    // 120 -> 136
+    // 128 - 120 = 8 + 128 = 136
+
+    // 140 -> 116
+    // 128 - 140 = -12 + 128 = 116
+    return (axis - num) + axis;
+}

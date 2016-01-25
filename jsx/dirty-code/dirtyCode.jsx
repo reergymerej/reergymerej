@@ -1,6 +1,6 @@
 import circle from './circle.jsx'
 import code from './code.jsx'
-import { rand, range, distance } from './util.jsx'
+import { rand } from './util.jsx'
 import $ from '../../bower_components/jquery/dist/jquery.min'
 
 export default (canvas) => {
@@ -15,8 +15,6 @@ export default (canvas) => {
         blockHeight: 25,
     });
 
-
-
     let hero = circle({
         canvas,
         // x: 110,
@@ -25,12 +23,13 @@ export default (canvas) => {
         y: rand(0, height),
         radius: 20,
         fillStyle: '#fff',
-        // xSpeed: 3,
-        // ySpeed: rand(1, 5),
+        xSpeed: 5,
+        ySpeed: 5,
         influence: 100,
         isHero: true,
     });
 
+    // TODO: use the canvas arg
     $('canvas').on('click', (event) => {
         let { offsetX: x, offsetY: y} = event;
         hero.setPosition(x, y);
@@ -44,8 +43,8 @@ export default (canvas) => {
             // x: 100,
             // y: 100,
             radius: 25,
-            xSpeed: rand(-5, 5),
-            ySpeed: rand(-5, 5),
+            xSpeed: rand(1, 5),
+            ySpeed: rand(1, 5),
             influence: rand(-12, 0),
             // ySpeed: 0,
         });

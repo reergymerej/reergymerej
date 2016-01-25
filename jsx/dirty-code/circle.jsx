@@ -1,4 +1,4 @@
-import { distance } from './util.jsx'
+import { distance, flip, rand } from './util.jsx'
 
 let circle = (options) => {
     let {
@@ -6,6 +6,7 @@ let circle = (options) => {
         x, y,
         radius,
         fillStyle,
+        strokeStyle,
         xSpeed = 0,
         ySpeed = 0,
         influence = -3,
@@ -20,30 +21,47 @@ let circle = (options) => {
     let context = canvas.getContext('2d');
     let {width: canvasWidth, height: canvasHeight} = canvas;
 
-    let getFillStyle = () => {
+    let getColorValue = (influence) => {
+        let value = (influence * 10) + 128
+        if (value < 0) {
+            value = 0;
+        } else if (value > 256) {
+            value = 256;
+        }
 
+        return value;
+    };
+
+    let getFillStyle = (influence) => {
         if (!fillStyle) {
-            let value = (influence * 10) + 128
-            if (value < 0) {
-                value = 0;
-            } else if (value > 256) {
-                value = 256;
-            }
-
+            let value = getColorValue(influence);
             return `rgb(${value}, ${value}, ${value})`;
         } else {
             return fillStyle;
         }
     };
 
+    let getBorderStyle = (influence) => {
+        let value = getColorValue(influence);
+        value = flip(value, 128);
+        return `rgb(${value}, ${value}, ${value})`;
+    };
+
+    let updateColors = (influence) => {
+        fillStyle = getFillStyle(influence);
+        strokeStyle = getBorderStyle(influence);
+    };
+
+    updateColors(influence);
+
     let me = {
         draw: () => {
             context.beginPath();
             context.arc(_x, _y, _radius, 0, 2 * Math.PI, false);
-            context.fillStyle = getFillStyle();
+            context.fillStyle = fillStyle;
             context.fill();
-            // context.lineWidth = 5;
-            // context.strokeStyle = fillStyle;
+            context.lineWidth = 2;
+            context.strokeStyle = strokeStyle;
             context.stroke();
         },
 
@@ -73,18 +91,22 @@ let circle = (options) => {
                 let pastX = _x - canvasWidth;
                 _x -= pastX;
                 _xSpeed *= -1;
+                _xSpeed = rand(-5, -1);
             } else if (_x < 0) {
                 _x = -_x;
                 _xSpeed *= -1;
+                _xSpeed = rand(1, 5);
             }
 
             if (_y > canvasHeight) {
                 let pastY = _y - canvasHeight;
                 _y -= pastY;
                 _ySpeed *= -1;
+                _ySpeed = rand(-5, -1);
             } else if (_y < 0) {
                 _y = -_y;
                 _ySpeed *= -1;
+                _ySpeed = rand(1, 5);
             }
         },
 
@@ -113,7 +135,8 @@ let circle = (options) => {
             } else if (influence < -12) {
                 influence = -12;
             }
-            console.log('influence:', influence);
+
+            updateColors(influence);
         },
 
         getRadius: () => {
